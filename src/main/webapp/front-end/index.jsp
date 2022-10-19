@@ -105,7 +105,7 @@
                 <c:forEach var="shot" items="${shots.history}">
                     <tr>
                         <td>${shot.date}</td>
-                        <td>${shot.time} мс</td>
+                        <td>${shot.time} нс</td>
                         <td>${shot.x}</td>
                         <td>${shot.y}</td>
                         <td>${shot.r}</td>

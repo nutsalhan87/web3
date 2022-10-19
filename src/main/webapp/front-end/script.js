@@ -4,13 +4,25 @@ let y = "";
 let r;
 
 async function initDocument() {
-    document.getElementById("coords").onmousemove = mouseEvent => changePointLocation(mouseEvent);
+    document.getElementById("coords").onmousemove = ev => changePointLocationOnSVG(ev);
     document.getElementById("coords").onmouseup = mouseEvent => changeInputs(mouseEvent);
     document.getElementById("Y").onchange = () => validateTextForm();
     document.getElementById("submit-button").onclick = () => validateAndSubmit();
 }
 
-async function changePointLocation(ev) {
+// Рисует точки по координатам сетки
+async function changePointLocationOnCoordinates() {
+    const x = getX();
+    if (r === undefined || x == null || y === undefined) {
+        return;
+    }
+    const xSVG = 126 * x / r + 188;
+    const ySVG = 126 * y / r - 188;
+    await changePointLocationOnSVG(xSVG, ySVG);
+}
+
+// Рисует точки по координатам на svg изображении
+async function changePointLocationOnSVG(ev) {
     const userPoint = document.getElementById("user-point");
     userPoint.setAttribute("cx", ev.offsetX);
     userPoint.setAttribute("cy", ev.offsetY);
@@ -25,18 +37,16 @@ async function changePointLocation(ev) {
 }
 
 async function changeInputs(ev) {
-    if (!isButtonFormValid()) { return; }
+    if (!isButtonFormValid()) {
+        return;
+    }
     const newX = String(Math.round((ev.offsetX - 188) * r / 126));
     const newY = ((188 - ev.offsetY) * r / 126).toFixed(4);
     let radios = document.getElementById("X").elements;
     for (let radio of radios) {
-        if (radio.getAttribute("value") !== newX) {
-            radio.removeAttribute("checked");
-        } else {
-            radio.setAttribute("checked", "");
-        }
+        radio.checked = radio.getAttribute("value") === newX;
     }
-    document.getElementById("Y").setAttribute("value", newY);
+    document.getElementById("Y").value = newY;
     console.log("x: " + newX + " y: " + newY);
 }
 
@@ -54,7 +64,7 @@ async function validateAndSubmit() {
 }
 
 function isRadioFormValid() {
-    const isIt = getX() != null; 
+    const isIt = getX() != null;
     if (!isIt) {
         highlightById("X");
     }
@@ -80,7 +90,7 @@ function isButtonFormValid() {
 function validateTextForm() {
     let currentY = Number(document.getElementById("Y").value);
     if (Number.isNaN(currentY) || currentY <= -5 || currentY >= 5) {
-        document.getElementById("Y").value = y; 
+        document.getElementById("Y").value = y;
     } else {
         y = currentY;
     }
@@ -89,6 +99,7 @@ function validateTextForm() {
 function setR(newR) {
     document.getElementById("hidden-R").setAttribute("value", newR);
     r = newR;
+    changePointLocationOnCoordinates().then();
 }
 
 function getX() {

@@ -1,8 +1,6 @@
 package org.nutsalhan87.web2.beans;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.util.Date;
 
 public class Shot implements Serializable {
     String date;

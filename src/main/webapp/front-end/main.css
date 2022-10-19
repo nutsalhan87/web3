@@ -37,8 +37,8 @@ fieldset {
 }
 
 #coords {
-    width: 375px; 
-    height: 375px; 
+    width: 375px;
+    height: 375px;
     margin-right: 50px;
     transition: 0.1s;
 }
@@ -46,7 +46,7 @@ fieldset {
 #coords:hover {
     transform: scale(1.1);
 }
- 
+
 .center-align {
     text-align: center;
 }

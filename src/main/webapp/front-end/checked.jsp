@@ -45,7 +45,8 @@
                 <text x="110" y="176">-R/2</text>
                 <text x="240" y="176">R/2</text>
                 <text x="308" y="176">R</text>
-                <circle id="user-point" cx="${188 + shot.x / shot.r * 2* 63}" cy="${188 - shot.y / shot.r  * 2 * 63}" r="5"/>
+                <circle id="user-point" cx="${188 + shot.x / shot.r * 2* 63}" cy="${188 - shot.y / shot.r  * 2 * 63}"
+                        r="5"/>
             </svg>
         </td>
         <td class="tall-cell"></td>
@@ -53,28 +54,22 @@
     <tr>
         <td>
             <h2>Дата и время запроса: ${shot.date}</h2>
-            <h2>Время обработк: ${shot.time} мс</h2>
+            <h2>Время обработк: ${shot.time} нс</h2>
             <h2>X: ${shot.x}</h2>
             <h2>Y: ${shot.y}</h2>
             <h2>R: ${shot.r}</h2>
             <h2>Попал ли: <c:choose>
                 <c:when test="${shot.result == true}">ДА!!!</c:when>
                 <c:when test="${shot.result == false}">НЕТ(((</c:when>
-            </c:choose> </h2>
-            <form method="get" action=""><button>Назад</button></form>
+            </c:choose></h2>
+            <form method="get" action="">
+                <button>Назад</button>
+            </form>
         </td>
     </tr>
     <tr>
         <td class="tall-cell"></td>
     </tr>
 </table>
-<%--    <jsp:useBean id="shot" scope="request" class="org.nutsalhan87.web2.beans.Shot"/>--%>
-<%--    <p>date: ${shot.date}</p>--%>
-<%--    <p>time: ${shot.time} мс</p>--%>
-<%--    <p>x: ${shot.x}</p>--%>
-<%--    <p>y: ${shot.y}</p>--%>
-<%--    <p>r: ${shot.r}</p>--%>
-<%--    <p>result: ${shot.result}</p>--%>
-<%--    <a href='<c:url value="/"/>'>Назад</a>--%>
 </body>
 </html>
