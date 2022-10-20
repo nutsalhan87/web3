@@ -36,6 +36,7 @@
           <java-opts>
             <java-opt>-Djboss.http.port=9727</java-opt>
             <java-opt>-Djboss.management.http.port=9728</java-opt>
+            <java-opt>-Djboss.https.port=9729</java-opt>
             <java-opt>-Djboss.bind.address=0</java-opt>
           </java-opts>
           <startupTimeout>3000</startupTimeout>
