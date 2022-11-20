@@ -25,7 +25,7 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">create</property>
 
-        <mapping class="org.nutsalhan87.web2.Shot"/>
+        <mapping class="org.nutsalhan87.web3.Shot"/>
 
     </session-factory>
 

@@ -1,4 +1,4 @@
-package org.nutsalhan87.web2;
+package org.nutsalhan87.web3;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.context.ExternalContext;

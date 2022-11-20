@@ -1,10 +1,9 @@
-package org.nutsalhan87.web2;
+package org.nutsalhan87.web3;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
