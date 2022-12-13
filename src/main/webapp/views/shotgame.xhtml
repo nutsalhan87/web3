@@ -44,7 +44,9 @@
                            rotate="true" styleClass="text-left">
                     <f:ajax event="valueChange" execute="@this" render="@this"/>
                 </p:spinner>
-                <h:commandButton id="submit-button" value="Отправить" action="#{shotHistory.processAndAddShot}"/>
+                <h:commandButton id="submit-button" value="Отправить" action="#{shotHistory.processAndAddShot}">
+                    <f:ajax execute="@form" render="result-table" onevent="drawLastPointInTable"/>
+                </h:commandButton>
             </h:panelGrid>
         </h:form>
     </h:panelGroup>

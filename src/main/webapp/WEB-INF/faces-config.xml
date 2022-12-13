@@ -9,10 +9,6 @@
             <from-outcome>shotgame</from-outcome>
             <to-view-id>/views/shotgame.xhtml</to-view-id>
         </navigation-case>
-        <navigation-case>
-            <from-outcome>doom</from-outcome>
-            <to-view-id>/views/doom/doom.xhtml</to-view-id>
-        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/views/shotgame.xhtml</from-view-id>

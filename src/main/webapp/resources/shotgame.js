@@ -8,7 +8,58 @@ function initDocument() {
     document.getElementById("coord-form:Y").addEventListener("change", () => redrawCoordinates().then());
     document.getElementById("coord-form:R_input").addEventListener("change", () => redrawCoordinates().then());
     redrawCoordinates().then();
-    console.log("init script completed!");
+    drawPoints().then();
+    console.log("Init script completed!");
+}
+
+async function drawPoints() {
+    const rows = document.getElementById("result-table").rows;
+    for (let i = 1; i < rows.length; ++i) {
+        const x = Number(rows[i].cells[2].innerText);
+        const y = Number(rows[i].cells[3].innerText);
+        const r = Number(rows[i].cells[4].innerText);
+        const shotStatus = rows[i].cells[5].innerText;
+        if (shotStatus === "ДА!!!") {
+            drawPoint(true, x, y, r);
+        } else if (shotStatus === "НЕТ(((") {
+            drawPoint(false, x, y, r);
+        }
+    }
+    console.log("All the points are drawn");
+}
+
+function drawLastPointInTable(data) {
+    const rows = document.getElementById("result-table").rows;
+    const shotStatus = rows[rows.length - 1].cells[5].innerText === "ДА!!!";
+    const x = Number(rows[rows.length - 1].cells[2].innerText);
+    const y = Number(rows[rows.length - 1].cells[3].innerText);
+    const r = Number(rows[rows.length - 1].cells[4].innerText);
+    drawPoint(shotStatus, x, y, r);
+    console.log("Last point is drawn");
+}
+
+function drawPoint(shotStatus, x, y, r) {
+    let point = shotStatus ? getGreenPoint() : getRedPoint();
+    const xSVG = x * 200 / r + 300;
+    const ySVG = 300 - y * 200 / r;
+    point.setAttribute("cx", xSVG);
+    point.setAttribute("cy", ySVG);
+    const coords = document.getElementById("coords");
+    coords.insertBefore(point, coords.lastElementChild);
+}
+
+function getRedPoint() {
+    const redCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    redCircle.classList.add("red-point");
+    redCircle.setAttribute("r", "5");
+    return redCircle;
+}
+
+function getGreenPoint() {
+    const greenCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    greenCircle.classList.add("green-point");
+    greenCircle.setAttribute("r", "5");
+    return greenCircle;
 }
 
 async function sendCoordinates(ev) {

@@ -9,14 +9,13 @@ import java.util.Date;
 @Entity
 @Table(name = "SHOT_HISTORY")
 public class Shot implements Serializable {
-
-    long id;
-    String date;
-    int time;
-    float x;
-    float y;
-    float r;
-    boolean result;
+    private long id;
+    private String date;
+    private int time;
+    private float x;
+    private float y;
+    private float r;
+    private boolean result;
 
     protected Shot() {
         this.date = Clock.formatter.format(new Date());

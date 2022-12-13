@@ -75,3 +75,11 @@ svg text {
 #back-button {
     margin-left: 1em;
 }
+
+.red-point {
+    fill: #cd0005;
+}
+
+.green-point {
+    fill: #37cd33;
+}
